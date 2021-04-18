@@ -1,0 +1,233 @@
+DT  = 0.2       // Record data with a resolution of 0.2 ms
+DTT =  0.002      // Record data with a resolution of 0.002 ms
+
+objref Ttt,time
+objref Vms[m], Vmd[m], Vmt[m]
+objref Vgs[g], Vgb[g]
+objref Vps[p], Vpb[p] 
+
+Ttt = new Vector()
+time   = new Vector()
+
+
+// Record time	
+Ttt.record(&t, DTT)  
+time.record(&t, DT)
+
+///////////////////////////////////////// record voltage /////////////////////////////////////////////
+// Record Mit Soma Voltage
+ for i=0, m-1 {
+     Vms[i] = new Vector()
+     Vms[i].record(&mit[i].soma.v(0.5), DT)
+ }
+
+
+// Record Mit Dend Voltage
+ for i=0, m-1 {
+    Vmd[i] = new Vector()
+    Vmd[i].record(&mit[i].dend.v(1.0), DT)
+ }
+ 
+ // Record Mit tuft Voltage
+ for i=0, m-1 {
+    Vmt[i] = new Vector()
+    Vmt[i].record(&mit[i].tuft.v(0.5), DT)
+ }
+ 
+
+// Record PG Soma Voltage
+ for i=0, p-1 {
+  
+    Vps[i] = new Vector()
+    Vps[i].record(&pg[i].soma.v(0.5), DT)
+  
+ }
+  
+// Record PG Spine Voltage
+ for i=0, p-1 {
+   
+    Vpb[i] = new Vector()
+    Vpb[i].record(&pg[i].gemmbody.v(0.5), DT)
+  
+ }  
+
+
+// Record GC Soma Voltage
+ for i=0, g-1 {  
+    Vgs[i] = new Vector()
+    Vgs[i].record(&gran[i].soma.v(0.5), DT)
+  }
+ 
+// Record Gran Spine Voltage
+ for i=0, g-1 { 
+    Vgb[i] = new Vector()
+    Vgb[i].record(&gran[i].gemmbody.v(0.5), DT)
+  }
+ 
+ //////////////////////////////////// save data ///////////////////////////////////////
+proc save_data() {
+   WD = getcwd()
+   
+   sprint(filepath, "datas%d",$1)
+   print filepath
+   print "\n"
+   
+   FL=chdir(filepath)
+   
+   if (FL==-1) {
+    sprint(string, "system(\"mkdir %s\")", filepath)
+    //chdir("getcwd()")
+    chdir(WD)
+	execute(string)
+    } else {
+    chdir(WD)
+   }
+   
+print "\nboooooooooooooooooo1\n"
+
+////////////////////////////////////// simulation time /////////////////////////////////
+
+    sprint(filename, "%s/ttt", filepath)
+    f1.wopen(filename)
+    time.printf(f1)
+    f1.close()
+
+    sprint(filename, "%s/Ttt", filepath)
+    f1.wopen(filename)
+    Ttt.printf(f1)
+    f1.close()
+////////////////////////////////////// voltage /////////////////////////////////////////
+
+// Save voltage of mitral cells
+  // Soma 
+  for i=0, m-1 {
+     sprint(filename, "%s/Vms_%d",filepath, i)
+     f1.wopen(filename)
+     Vms[i].printf(f1)
+     f1.close()	 
+  }
+ 
+
+  // Dendrite
+  for i=0, m-1 {
+     sprint(filename, "%s/Vmd_%d",filepath, i)
+     f1.wopen(filename)
+     Vmd[i].printf(f1)
+     f1.close()	 
+  }
+ 
+
+  
+// Save PG voltages
+  // Soma
+  
+  for i=0, p-1 {
+ 
+    sprint(filename, "%s/Vps%d",filepath, i)
+    f1.wopen(filename)
+    Vps[i].printf(f1)
+    f1.close()	
+    
+  }   
+  
+  
+  // Spine
+  for i=0, p-1 {
+    
+    sprint(filename, "%s/Vpb_%d",filepath, i)
+    f1.wopen(filename)
+    Vpb[i].printf(f1)
+    f1.close()	
+   
+  }     
+  
+  
+// Save GC voltages
+// Soma
+  
+  for i=0, g-1 {
+     sprint(filename, "%s/Vgs_%d",filepath, i)
+     f1.wopen(filename)
+     Vgs[i].printf(f1)
+     f1.close()	 
+  }
+ 
+  
+ // Spine
+  for i=0, g-1 {
+     sprint(filename, "%s/Vgb_%d",filepath, i)
+     f1.wopen(filename)
+     Vgb[i].printf(f1)
+     f1.close()	 
+  }
+ 
+  
+////////////////////////////////////// SPIKE TIMING/////////////////////////////////////
+
+// Save MC dendritic spike time	
+  for i=0, m-1 {
+    	
+    sprint(filename, "%s/Ms_%d",filepath, i)
+	f1.wopen(filename)
+	mit[i].spiketimes.printf(f1)
+	f1.close()
+   
+  }   
+  
+ // Save MC dendritic spike time	
+  for i=0, m-1 {
+    	
+    sprint(filename, "%s/Md_%d",filepath, i)
+	f1.wopen(filename)
+	mit[i].dendspike.printf(f1)
+	f1.close()
+   
+  }   
+ 
+ 
+  // Save GC somatic spike time	
+  for i=0, g-1 {
+     
+      sprint(filename, "%s/Gs_%d",filepath, i)
+	  f1.wopen(filename)
+	  gran[i].spiketimes.printf(f1)
+	  f1.close()
+   
+  }
+  
+  // Save GC dendritic spike time	
+  for i=0, g-1 {
+     
+      sprint(filename, "%s/Gd_%d",filepath, i)
+	  f1.wopen(filename)
+	  gran[i].dendspike.printf(f1)
+	  f1.close()
+   
+  }  
+}
+
+// Save PGC somatic spike time	
+  for i=0, p-1 {
+     
+      sprint(filename, "%s/Ps_%d",filepath, i)
+	  f1.wopen(filename)
+	  pg[i].spiketimes.printf(f1)
+	  f1.close()
+   
+  }
+  
+  // Save PGC dendritic spike time	
+  for i=0, p-1 {
+     
+      sprint(filename, "%s/Pd_%d",filepath, i)
+	  f1.wopen(filename)
+	  pg[i].dendspike.printf(f1)
+	  f1.close()
+   
+  }  
+}
+
+
+print "\nboooooooooooooooooo4\n"
+
+

@@ -1,0 +1,48 @@
+
+// Save simulation data to a folder (data0)
+
+DT  = 0.2       // Record data with a resolution of 0.2 ms
+DTT = 0.02      // Record data with a resolution of 0.02 ms
+
+sum = 0
+
+objref f1
+f1 = new File()
+
+strdef filepath, filepath1, string, filename, WD
+filepath  = "plswork/"
+
+objref time, input, Vmean, Vmean2 
+objref Gpm[nmitx][nmity]
+objref Ggm[nMit][nGran], Ggm_Total[nMit]
+objref Vms[nmitx][nmity], Vmd[nmitx][nmity], Vmt[nmitx][nmity]
+objref Vgs[ngranx][ngrany], Vgb[ngranx][ngrany]
+objref Vps[npgx][npgy], Vpb[npgx][npgy] 
+
+objref Tt
+objref Vmc22[5]
+
+
+filepath1 = "RSP2/"  // used to store random background inputs; not used currently
+
+Tt = new Vector()
+time   = new Vector()
+input  = new Vector()
+
+
+
+// Record time	
+Tt.record(&t, DTT)  
+time.record(&t, DT)
+
+// Record input timecourse
+input.record(&MCinput[0][0].i, DT)
+
+
+f1.wopen("plswork/tt")
+f1.printf("Connections from MC cells to GC cells:\n")
+time.printf(f1,"%8.4f\n")
+f1.close()
+
+   
+

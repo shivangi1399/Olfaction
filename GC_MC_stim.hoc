@@ -1,0 +1,11 @@
+load_file("GC_MC_net.hoc")
+load_file("GC_MC_save.hoc")
+
+
+Fig_MC() 
+Fig_GC()
+// Fig_PG()
+run()
+print "\nboooooooooooooooooo\n"
+save_data(0)
+
