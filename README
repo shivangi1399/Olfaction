@@ -25,6 +25,8 @@ Background.hoc: Generate random background inputs to the network
 Input.hoc: Generate odor inputs to the network
 Figure.hoc: Generate graphic display of the network simulation results (Optional)
 SaveData.hoc: Save all relevant data into files for later analysis
+smolnet.hoc: network containing 2 MC, 1GC and 1PGC.
+
 
 
 The simulation step is set to 0.002 ms and the default simulation time is 3000 ms (3 sec) 
@@ -40,10 +42,10 @@ Rasterplot.m: generate raster plots of spikes
 LFP.m:   frequency analysis of the simulated local field potential (sLFP)
 Load_data.m: Load all relevant data into the workspace (in order to save the data into a mat file for future analysis)
 meancalc.m : Find average memberane potential of PGC
+Analysis.m : get addition of spike data
+Plotting.m: plot in real time
 
-Order: Load_data > meancalc > LFP/PlotV/PlotG etc
-Analysis.m - get addition of spike data
-Plotting - plot in real time
+Order: Load_data > meancalc > LFP/PlotV/PlotG.m etc > Analysi.m > Plotting.m
 
 
 
