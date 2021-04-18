@@ -1,22 +1,7 @@
  
-//===============================================================================================================   
-	NEURON CODE FOR IMPLEMENTING 2D OLFACTORY BULB (OB) MODEL OF GAMMA OSCILLATIONS
-
-				Guoshi Li
-                                Department of Psychiatry
-				Univeristy of North Carolina at Chapel Hill
-                                Chapel Hill, NC 27599
-
-A full description of the model may be found in:
-Li G and Cleland TA (2017) A coupled-oscillator model of olfacotry bulb gamma oscillations. 
-PLOS Computational Biology (In press).
 
 
-For questions, please email: guoshi_li@med.unc.edu
-											
-//==================================================================================================================
-
-Then OB model is implemented with NEURON 7.3 and simulation is run under both CentOS Linux and Ubuntu Linux. 
+Then OB model is implemented with NEURON in Ubuntu Linux. 
 	
 The default OB network model contains 25 mitral cells (MCs), 25 periglomerular cells (PGs) and 100 granule cell (GCs)
  
@@ -57,6 +42,8 @@ Load_data.m: Load all relevant data into the workspace (in order to save the dat
 meancalc.m : Find average memberane potential of PGC
 
 Order: Load_data > meancalc > LFP/PlotV/PlotG etc
+Analysis.m - get addition of spike data
+Plotting - plot in real time
 
 
 
