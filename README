@@ -42,10 +42,14 @@ Rasterplot.m: generate raster plots of spikes
 LFP.m:   frequency analysis of the simulated local field potential (sLFP)
 Load_data.m: Load all relevant data into the workspace (in order to save the data into a mat file for future analysis)
 meancalc.m : Find average memberane potential of PGC
-Analysis.m : get addition of spike data
-Plotting.m: plot in real time
+PotentialConv : Convolving membrane potential data with a kernal
+SpikeConv : Convolving spike train data with a kernal
+Convanalysis_across : Correlation analysis across odors
+Convanalysis_within : Correlation analysis within odors
+Plot_corr : Plots for correlation analysis
 
-Order: Load_data > meancalc > LFP/PlotV/PlotG.m etc > Analysi.m > Plotting.m
+
+Order: Load_data > meancalc > LFP/PlotV/PlotG.m etc > SpikeConv/PotentialConv.m > Convanalysis_within and Convanalysis_across > Plot_corr
 
 
 
