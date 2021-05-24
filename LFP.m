@@ -1,10 +1,10 @@
-%% Plot LFP, FFT spectrum etc. 
+% Plot LFP, FFT spectrum etc. 
 
 clc;
 clear all;
 close all;
 
-path = strcat('/home/shivangi/Desktop/sem/sem7/gamma_DC/project/data0');
+path = strcat('/home/shivangi/Desktop/sem/sem7/odors_DC/less inhibition/odor1_var/high noise/Trial 1/data0');
 cd(path);
 
 load tt;   %t     
@@ -196,9 +196,9 @@ box('off');
 % cd(path);
 % save Vaf.mat
 
-% path = strcat('/home/shivangi/Desktop/sem/sem7/odors_DC/odor1_var/Figures/MC');
-% cd(path);
-% for k=1:6
-%   saveas(figure(k),sprintf('figuref_%d.jpg',k))
-% end
+path = strcat('/home/shivangi/Desktop/sem/sem7/odors_DC/less inhibition/odor1_var/high noise/Trial 1/Figures/MC');
+cd(path);
+for k=1:6
+  saveas(figure(k),sprintf('figuref_%d.jpg',k))
+end
 

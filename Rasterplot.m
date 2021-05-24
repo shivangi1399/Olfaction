@@ -5,7 +5,7 @@ clear all;
 close all;
 
 load Odor;
-path = strcat('/home/shivangi/Desktop/sem/sem7/odors_DC/odor1_var/data0');
+path = strcat('/home/shivangi/Desktop/sem/sem7/odors_DC/more inhibition/odor2_var/high noise/Trial 4/data0');
 cd(path);
 
 
@@ -197,9 +197,8 @@ disp('The MC firing rate during odor presentation is:');
 fM
 fP
 fG
-
-
-path = strcat('/home/shivangi/Desktop/sem/sem7/odors_DC/odor1_var/Figures');
+1
+path = strcat('/home/shivangi/Desktop/sem/sem7/odors_DC/more inhibition/odor2_var/high noise/Trial 0/Figures');
 cd(path);
 for k=1:3
   saveas(figure(k),sprintf('r_%d.jpg',k))

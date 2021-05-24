@@ -4,7 +4,7 @@ clc;
 clear all;
 close all;
 
-path = strcat('/home/shivangi/Desktop/sem/sem7/gamma_DC/project/data0');
+path = strcat('/home/shivangi/Desktop/sem/sem7/odors_DC/more inhibition/odor2_var/high noise/Trial 4/data0');
 cd(path);
 
 nmitx = 5;
